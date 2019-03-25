@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Axios from 'axios';
+import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 export default class Edit extends Component {
@@ -35,8 +35,8 @@ export default class Edit extends Component {
     };
 
     
-    Axios.post("https://character-database.becode.xyz/characters/", obj)
-        .then(response => response.json(),this.props.history.push('/'))
+    axios.put("https://character-database.becode.xyz/characters/" + this.props.match.params.id, obj)
+          .then(this.props.history.push('/'))
   
 
     }
@@ -80,6 +80,9 @@ export default class Edit extends Component {
       }
 
       render() {
+        let {imagePreviewUrl} = this.state;
+        let $imagePreview = null;
+
         if (imagePreviewUrl) {
             $imagePreview = (<React.Fragment>
               {/* "data:image;base64," */}

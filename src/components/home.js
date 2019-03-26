@@ -17,8 +17,6 @@ class home extends Component {
   deleteCharacter(e){
     console.log('test')
     axios.delete("https://character-database.becode.xyz/characters/" + e)
-    .then(
-    response => response.json())
     
   }
 
@@ -56,39 +54,34 @@ class home extends Component {
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <div class="container mt-40">
-            <h3 class="text-center">Character List</h3>
-            <div class="row mt-30">
-            {character.map(character =>
-                <div class="col-md-4 col-sm-6">
-                    <div class="box3">
-                    <img src={`data:image/jpeg;base64,${character.image}`} className="img-responsive" alt=""/>
-                        <div class="box-content">
-                          <h3 class="title">{character.name}</h3>
-                            <span class="post"></span>
-                            <p class="description">
-                            {character.shortDescription}
-                            </p>
-                              <Link to={'/Edit/'+ character.id}>  
-                              <button>Edit</button>
-                              </Link>
-                              
-                              <Link to={'/character/'+ character.id}>  
-                              <button>Read More</button>
-                              </Link>
-                              <Link class="social-icon text-xs-center" to="/" onClick={(e) => { if (window.confirm('Are you sure .')) this.deleteCharacter(character.id) } }>
-                                     <i class="fas fa-trash-alt"></i> delete
-                              </Link>
-                                
-                            
-                        </div>
-                    </div>
-                </div>
-            )}
-            </div>
+<div className="container mt-40">
+  <h3 className="text-center">Character List</h3>
+  <div className="row mt-30">
+    {character.map(character =>
+    <div className="col-md-4 col-sm-6" key={character.id}>
+      <div className="box3">
+        <img src={`data:image/jpeg;base64,${character.image}`} className="img-responsive" alt=""/>
+        <div className="box-content">
+          <h3 className="title">{character.name}</h3>
+          <span className="post"></span>
+          <p className="description">
+          {character.shortDescription}
+          </p>
+          <Link to={'/Edit/'+ character.id}>  
+            <button>Edit</button>
+          </Link>
+          <Link to={'/character/'+ character.id}>  
+            <button>Read More</button>
+          </Link>
+          <button onClick={(e)=>{if (window.confirm('Are you sure ?')) this.deleteCharacter(character.id)}}>Delete</button> 
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      </div>
+    </div>
+    )}
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       </React.Fragment>
     );
   }

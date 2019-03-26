@@ -35,7 +35,7 @@ export default class Edit extends Component {
     };
 
     
-    axios.put("https://character-database.becode.xyz/characters/" + this.props.match.params.id, obj)
+    axios.post("https://character-database.becode.xyz/characters/" , obj)
           .then(this.props.history.push('/'))
   
 

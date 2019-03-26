@@ -7,6 +7,7 @@ import Header from './Header';
 import Home from './home';
 import Edit from './Edit';
 import Create from './Create';
+import character from './character';
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
                <Route exact path ='/' component={Home}/>
                <Route exact path ='/Edit/:id' component={Edit}/>
                <Route exact path='/Create' component={Create}/>
+               <Route exact path='/character/:id' component={character}/>
               
              </Switch>
           </div>

@@ -11,7 +11,19 @@ class home extends Component {
     this.state = {
       character: [],
     };
+    
   }
+
+  deleteCharacter(e){
+    console.log('test')
+    axios.delete("https://character-database.becode.xyz/characters/" + e)
+    .then(
+    response => response.json())
+    
+  }
+
+  
+ 
 
   componentDidMount() {
     fetch("https://character-database.becode.xyz/characters")
@@ -24,8 +36,15 @@ class home extends Component {
     .then(response => response.json())
     .then(data => this.setState({ character: data }));
   }
+
+  
+  
+ 
+
+  
   render() {
     const { character } = this.state;
+    
     
 
     return (
@@ -54,8 +73,12 @@ class home extends Component {
                               <button>Edit</button>
                               </Link>
                               
+                              <Link to={'/character/'+ character.id}>  
                               <button>Read More</button>
-                              <button>Delete</button>
+                              </Link>
+                              <Link class="social-icon text-xs-center" to="/" onClick={(e) => { if (window.confirm('Are you sure .')) this.deleteCharacter(character.id) } }>
+                                     <i class="fas fa-trash-alt"></i> delete
+                              </Link>
                                 
                             
                         </div>
